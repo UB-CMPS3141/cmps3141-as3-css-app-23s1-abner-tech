@@ -1,0 +1,27 @@
+/* SAMPLE 1 */
+
+ document.body.insertAdjacentHTML("beforeend", `
+  <style>
+    .leftcolpost{
+    border: 1px solid black;
+    }
+`); 
+
+
+
+
+/* SAMPLE 2 */
+
+ document.body.insertAdjacentHTML("beforeend", `
+  <style>
+    div.featuredlist{
+    font-size: 24px;
+    }
+    div#navcats{
+    font-size: 24px;
+    }
+
+    li:hover{
+    background-color: gray;
+    }
+`); 

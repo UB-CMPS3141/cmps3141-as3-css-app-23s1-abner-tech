@@ -6,11 +6,12 @@ globalThis.app = createApp({
         expenses: [], // Store the loaded expenses data
         transactionType: 'jointExpense',
         paymentType: 'personalPayment',
-        Date: '',
+        Date:'',
         amount: 0,
         payer: 'Neo',
         convertedAmount: 0.00,
-        toCurrency:'BZD'
+        toCurrency:'BZD',
+        CURRENCY: 'BZD',
 
 
     },
@@ -44,30 +45,38 @@ globalThis.app = createApp({
 
             if(this.toCurrency === 'BZD'){
                 this.convertedAmount = this.amount;
+                this.CURRENCY = this.toCurrency;
+            } else if(this.toCurrency === 'MXN'){
+                this.convertedAmount = this.currencyConvert(this.toCurrency,'BZD',amount).toFixed(2);
+                this.CURRENCY = this.toCurrency;
             }
-
-            console.log(amount);
-
-
+            else{
+                this.convertedAmount =  this.currencyConvert(this.toCurrency,'BZD',amount).toFixed(2);
+                this.CURRENCY = this.toCurrency;
+            };
         },
+
     
         async Add_Transaction() {
             // Add your transaction logic here
+
+     
+
+
             const title = this.transactionType;
             const amount = parseFloat(this.amount);
 
             const newTransaction = {
                 title: title,
-
-                [this.payer === 'Trinity'? 'trinity_paid' : 'neo_paid']:amount
             };
 
-            this.expenses.push(newTransaction);
+            //this.expenses.push(newTransaction);
 
             try{
                 const response = await fetch('https://raw.githubusercontent.com/abner-tech/JsonFileForExpenseApp/main/data.json',
+                // const response = await fetch('https://raw.githubusercontent.com/UB-CMPS3141/cmps3141-as3-css-app-23s1-abner-tech/main/expenses/data.json',
                 {
-                    method: 'POST',
+                    method: 'PUSH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -95,6 +104,7 @@ globalThis.app = createApp({
 
     mounted() {
         // Load the expenses data from the JSON file
+        //fetch('https://raw.githubusercontent.com/UB-CMPS3141/cmps3141-as3-css-app-23s1-abner-tech/main/expenses/data.json')
         fetch('https://raw.githubusercontent.com/abner-tech/JsonFileForExpenseApp/main/data.json')
             .then(response => response.json())
             .then(data => {

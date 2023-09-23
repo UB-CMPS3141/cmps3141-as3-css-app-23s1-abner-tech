@@ -1,0 +1,75 @@
+body{
+    background-color:beige;
+}
+
+.container{
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color:bisque;
+    box-shadow: 0 4px 8px 0 rgba(230, 146, 146, 0.2),
+     0 6px 20px 0 rgba(218, 147, 147, 0.19);
+}
+
+button{
+    margin-top: .5rem;
+    background-color:antiquewhite;
+    padding: 5px 10px 5px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+a{
+    color:blueviolet;
+    font-size: larger;
+}
+button:hover{
+    background-color: rgb(185, 170, 199);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+a:hover{
+    color: crimson;
+    font-weight:bolder
+}
+div{
+    background-color: rgb(180, 221, 235);
+    padding-bottom: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+     0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+h3,h1{
+    background-color:rgb(144, 178, 178);
+    text-indent: 10px;
+}
+
+table{
+    border: 2px solid red;
+    border-collapse: collapse;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+img{
+    max-width: 100%;
+}
+
+th, td {
+    border-right: 2px solid red; /* Add a red border to the right of each cell */
+    padding: 8px;
+    text-align: left;
+    border-bottom: 2px solid red;;
+  }
+
+  th{
+    font-size: x-large;
+  }
+
+  p{
+    margin: auto 20px 20px 20px;
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+  }

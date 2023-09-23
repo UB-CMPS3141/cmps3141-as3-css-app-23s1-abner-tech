@@ -14,8 +14,8 @@ Date: Sept.22.23
 
 <div id="app">
 	<!-- Replace cmps3141-as3-css_app-23s1 below with your repo name (cmps3141-as3-css_app-23s1-yourusername) so you can save!  -->
-	<ma-data v-model="expenses" src="https://raw.githubusercontent.com/abner-tech/JsonFileForExpenseApp/main/data.json"></ma-data>
-	<!-- <ma-data v-model="expenses" src="https://github.com/UB-CMPS3141/cmps3141-as3-css-app-23s1-abner-tech/blob/9f1171449cb2bd9b5375aadd04b91608094a8c44/expenses/data.json"></ma-data> -->
+	<!-- <ma-data v-model="expenses" src="https://raw.githubusercontent.com/UB-CMPS3141/cmps3141-as3-css-app-23s1-MtechGuy/main/expenses/data.json"></ma-data> -->
+	<ma-data v-model="expenses" src="https://github.com/UB-CMPS3141/cmps3141-as3-css-app-23s1-abner-tech/blob/9f1171449cb2bd9b5375aadd04b91608094a8c44/expenses/data.json"></ma-data>
 
 	<!-- App YOUR UI here -->
 
@@ -40,7 +40,7 @@ Date: Sept.22.23
 		 <tr>
 			<td><label for="paymentType">Payment Type:</label>  </td>
 			<td>
-				<select id="paymentType" name="paymentType">
+				<select id="paymentType" name="paymentType" v-model="paymentType">
 					<option value="personalPayment"> Personal Payment</option>
 					<option value="partnerCard"> Partner's Card</option>
 					<option value="jointCardPayment">Joint Card Payment</option>
@@ -51,7 +51,7 @@ Date: Sept.22.23
 		 <tr>
 			<td>Payer:</td>
 			<td>
-				<select id="payer" name="payer" required>
+				<select id="payer" name="payer" v-model="payer" required>
 					<option value="Neo">Neo</option>
 					<option value="Trinity">Trinity</option>
 					<option value="Both">Both</option>
@@ -61,7 +61,7 @@ Date: Sept.22.23
 
 		<td>Amount Paid:</td>
 			<td>
-				<input type="number" id="amount" name="amount" step="0.01" min="0.00" v-model="amount" required>
+				<input type="number" id="amount" name="amount" step="0.01" min="0.00" v-model="amount" @change="convertCurrency" required>
 
 		   </td>
 		</tr>
@@ -75,7 +75,7 @@ Date: Sept.22.23
 					<option value="GTQ">GTQ</option>
 				</select>
 
-			   <br><p>Converted Amount: ${{ convertedAmount }} BZD </p>
+			   <br><p>Converted Amount: ${{ convertedAmount }} {{ CURRENCY }} </p>
 		   </td>
 		</tr>
 
@@ -84,10 +84,10 @@ Date: Sept.22.23
 
 		 <tr>
 			<td>
-				<label for="Date">Date:</label>
+				<label for="Date" >Date:</label>
 			</td>
 			<td>
-				<input type="date" id="Date" name="Date">
+				<input type="date" id="Date" name="Date" >
 			</td>
 		 </tr>
 		
