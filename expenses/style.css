@@ -85,6 +85,6 @@ h2 {
     font-weight: bold;
 }
 
-#Date, #amount,#comment{
-    width: 95%;
+#Date, #amount,#OtherExpenseData{
+    max-width: 95%;
 }

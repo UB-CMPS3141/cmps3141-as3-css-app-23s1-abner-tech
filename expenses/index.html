@@ -14,7 +14,8 @@ Date: Sept.22.23
 
 <div id="app">
 	<!-- Replace cmps3141-as3-css_app-23s1 below with your repo name (cmps3141-as3-css_app-23s1-yourusername) so you can save!  -->
-	<ma-data v-model="expenses" src="https://github.com/UB-CMPS3141/as3-css_app-23s1/expenses/data.json"></ma-data>
+	<ma-data v-model="expenses" src="https://raw.githubusercontent.com/abner-tech/JsonFileForExpenseApp/main/data.json"></ma-data>
+	<!-- <ma-data v-model="expenses" src="https://github.com/UB-CMPS3141/cmps3141-as3-css-app-23s1-abner-tech/blob/9f1171449cb2bd9b5375aadd04b91608094a8c44/expenses/data.json"></ma-data> -->
 
 	<!-- App YOUR UI here -->
 
@@ -30,22 +31,57 @@ Date: Sept.22.23
 		 <tr>
 			 <td>Expense Type :</td>
 			 <td>
-				 <select id="transactionType" name="transactionType">
-					 <option value="jointExpense">Joint Expense</option>
-					 <option value="personalExpense">Personal Expense</option>
-				 </select>
-			 </td>
-		 </tr>
-		 <tr>
-			<td>Payment Type: </td>
-			<td>
-				<select id="paymentType" name="paymentType">
-					<option value="PersonalPayment"> Personal Card Payment</option>
-					<option value="PartnerCard"> Partner's Card</option>
-					<option value="JointCardPayment">Joint Card Payment</option>
+				<select id="transactionType" name="transactionType">
+					<option value="jointExpense">Joint Expense</option>
+					<option value="personalExpense">Personal Expense</option>
 				</select>
 			</td>
 		 </tr>
+		 <tr>
+			<td><label for="paymentType">Payment Type:</label>  </td>
+			<td>
+				<select id="paymentType" name="paymentType">
+					<option value="personalPayment"> Personal Payment</option>
+					<option value="partnerCard"> Partner's Card</option>
+					<option value="jointCardPayment">Joint Card Payment</option>
+				</select>
+			</td>
+		 </tr>
+
+		 <tr>
+			<td>Payer:</td>
+			<td>
+				<select id="payer" name="payer" required>
+					<option value="Neo">Neo</option>
+					<option value="Trinity">Trinity</option>
+					<option value="Both">Both</option>
+				</select>
+			</td>
+		</tr>
+
+		<td>Amount Paid:</td>
+			<td>
+				<input type="number" id="amount" name="amount" step="0.01" min="0.00" v-model="amount" required>
+
+		   </td>
+		</tr>
+
+		<tr>
+			<td><label for="toCurrency">Currency</label></td>
+			<td>
+				<select id="toCurrency" name="toCurrency" v-model="toCurrency" @change="convertCurrency">
+					<option value="BZD">BZD</option>
+					<option value="MXN">MXN</option>
+					<option value="GTQ">GTQ</option>
+				</select>
+
+			   <br><p>Converted Amount: ${{ convertedAmount }} BZD </p>
+		   </td>
+		</tr>
+
+		<tr>
+			
+
 		 <tr>
 			<td>
 				<label for="Date">Date:</label>
@@ -54,48 +90,36 @@ Date: Sept.22.23
 				<input type="date" id="Date" name="Date">
 			</td>
 		 </tr>
+		
 		 <tr>
-			 <td>Amount Paid:</td>
-			 <td>
-				<input type="number" id="amount" name="amount" step="0.01" min="0.00" required>
-			</td>
-		 </tr>
-		 <tr>
-			 <td>Payer:</td>
-			 <td>
-				 <select id="payer" name="payer" required>
-					 <option value="Neo">Neo</option>
-					 <option value="Trinity">Trinity</option>
-					 <option value="Both">Both</option>
-				 </select>
-			 </td>
-		 </tr>
-		 <tr>
-			 <td>Comment:</td>
-			 <td>
-				<input type="text" id="comment" name="comment">
-			</td>
-		 </tr>
-		 <tr>
-			 <td colspan="2"><center><button @click="Add_Transaction()" >Add Transaction</button></center></td>
+			 <td colspan="2"><button  @click="Add_Transaction()" >Add Transaction</button></td>
 		 </tr>
 	 </table>
 	</div>
 	 
 	<div>
 		<h2>Debt Summary</h2>
-    	<ul id="debtSummary">
-        	<li>Neo owe Trinity 13:00</li> <!-- this is for sampling only-->
+		<ul id="debtSummary">
+			<li>
+				Neo's Dept is: ${{ debtSummary.Neo }}
+			</li>
+			<li>
+				Trinity's Dept is: ${{ debtSummary.Trinity }}
+			</li>
+			<li>
+				Total Balance: ${{ total_balance }}
+			</li>
 		</ul>
 	</div>
 
-	<div>
-		<h2>Transaction History</h2>
-   		<ul id="transactionList">
-			<li>personalExpense : 13.00 ,Paid by: Trinity For Both ("comment")</li><!-- this is for sampling only-->
-		</ul>
-	</div>
+    <div>
+        <h2>Transaction History</h2>
+        <ul id="transactionList">
+            <li v-for="transaction in transactionHistory">{{ transaction }}</li>
+        </ul>
+    </div>
 </div>
+
 
 <script src="index.js" type="module"></script>
 
